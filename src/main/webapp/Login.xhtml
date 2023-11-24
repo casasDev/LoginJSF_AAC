@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 xmlns:ui="http://java.sun.com/jsf/facelets"
 xmlns:h="http://java.sun.com/jsf/html"
-xmlns:f="http://java.sun.com/jsf/core">
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
 <f:view>
 <h:head><title>Aplicación JavaServer Faces</title></h:head>
 <h:body>
@@ -26,11 +27,14 @@ xmlns:f="http://java.sun.com/jsf/core">
 </h:inputSecret></td>
 </tr>
 <tr>
-<td>Fecha (dd/MM/yyyy):</td>
-<td><h:inputText id="data" value="#{login.fecha}">
-<f:convertDateTime pattern="dd/MM/yyyy"/>
-</h:inputText></td>
-<td><h:message for="pass" style="color:red" /></td>
+<td>Fecha (con PrimeFaces):</td>
+<td>
+<p:calendar id="fecha" value="#{login.fecha}" navigator="false"
+mode="inline">
+<p:ajax event="dateSelect" listener="#{login.onDateSelect}"
+update="mensajes">
+</p:ajax>
+</p:calendar></td>
 </tr>
 <tr>
 <td><h:messages style="color:blue"/></td>
@@ -38,10 +42,10 @@ xmlns:f="http://java.sun.com/jsf/core">
 </table>
 <p>
 <h:commandButton value="Aceptar" action="#{login.comprobar}"/>
-<h:commandButton value="Pirata" immediate="true"
-action="error"></h:commandButton>
+<h:commandButton value="Pirata" action="error" immediate="true"
+onclick="if (!confirm('¿Estás seguro?')) return false"/>
 </p>
-<h:messages style="color:blue"/>
+<h:messages id="mensajes"  style="color:blue"/>
 </h:form>
 </h:body>
 </f:view>
