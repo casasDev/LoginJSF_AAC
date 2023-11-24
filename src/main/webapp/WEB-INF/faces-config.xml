@@ -3,7 +3,7 @@
 <faces-config
     xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+    xsi:schemaLocation="http://Java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
     version="2.0">
 	<managed-bean>
 		<managed-bean-name>login</managed-bean-name>
@@ -26,5 +26,12 @@
 			<to-view-id>/Pirata.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<converter>
+	
+	<description>TipoUsuarioConverter, definido en faces-config.xml</description>
+	<converter-id>TipoUsuarioConverter</converter-id>
+	<converter-class>modelo.bean.TipoUsuarioConverter</converter-class>
+	</converter>
 
 </faces-config>
