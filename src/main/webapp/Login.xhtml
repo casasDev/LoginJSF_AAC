@@ -8,7 +8,7 @@ xmlns:p="http://primefaces.org/ui">
 <f:view>
 <h:head><title>Aplicación JavaServer Faces</title></h:head>
 <h:body>
-<h:form>
+<h:form id="miForm">
 <h3>Por favor, introduce tu nombre y tu contraseña (número entre 1 y
 500)</h3>
 <table>
@@ -63,7 +63,15 @@ converter="omnifaces.SelectItemsConverter">
 <h:commandButton value="Escoger" action="#{login.setTipo(item)}"/>
 </h:column>
 </h:dataTable>
-
+<td><p:dataTable id="tablaPF" value="#{login.tipos}" var="item" selectionMode="single"
+selection="#{login.tipo}" border="1" rowKey="#{item.codigo}">
+<p:ajax event="rowSelect" listener="#{login.onEventSelect}"
+update=":miForm:escogido :miForm:mensajes"></p:ajax>
+<f:facet name="header">Tipo de Usuario:</f:facet>
+<p:column headerText="Código">#{item.codigo}</p:column>
+<p:column headerText="Tipo">#{item.tipoUsu}</p:column>
+</p:dataTable></td>
+<td><h:outputText id="escogido" value="#{login.tipo}" style="color:red" /></td>
 </tr>
 </table>
 <p>
